@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import colors from '../../../assets/theme/colors'
-import Icon from '../../../components/Icons'
 import NavigationBar from '../../../components/NavigationBar'
 import SafeView from '../../../utils/SafeView'
 import IconFont from 'react-native-vector-icons/FontAwesome5'

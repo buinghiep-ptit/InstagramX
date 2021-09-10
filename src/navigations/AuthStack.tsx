@@ -9,12 +9,13 @@ import {
     Register, 
     Welcome 
 } from '../screens/Auth';
+import { WelcomePropsRouteParams } from '../screens/Auth/Welcome';
 
 export type AuthStackParamList = {
     Login: undefined;
     Register: undefined;
     ForgotPassword: undefined;
-    Welcome: undefined;
+    Welcome: WelcomePropsRouteParams;
 };
 
 const Stack = createStackNavigator<AuthStackParamList>()

@@ -1,5 +1,21 @@
 export default {
-    bg: '#FFFFFF',
-    shadow: '#A4BCDF',
-    blue: '#318bfb'
-}
+  blue: '#318bfb',
+  green: '#37B24D',
+  danger: '#ff0000', //'#FA5252',
+  red: '#ff0000',
+  primary: '#4361ee',
+  secondary: '#3f37c9',
+  accent: '#4895ef',
+  success: '#4cc9f0',
+  grey: '#adb5bd',
+  white: '#ffffff',
+  focus: '#adb5bd',
+  blur: '#3a3b3c',
+
+  bg: '#ffffff',
+  dark: '#18191a',
+  shadow: '#A4BCDF',
+  textTitle: '#151A30',
+  subTitle: '#313E5E',
+  focused: '#FC8000',
+};
