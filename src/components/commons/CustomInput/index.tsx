@@ -30,6 +30,7 @@ type InputProps = {
   returnKeyType?: 'default' | 'done' | 'search' | 'send';
   onBlur?: (event: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onFocus?: (event: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  secureTextEntry?: boolean;
 };
 const CustomInput = ({
   onChangeText,

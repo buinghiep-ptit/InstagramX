@@ -302,6 +302,7 @@ const Register = () => {
                                     name="close-circle"
                                     height={20}
                                     width={20}
+                                    fill={colors.focus}
                                   />
                                 </TouchableOpacity>
                               ) : (
@@ -342,7 +343,7 @@ const Register = () => {
                                   style={styles.iconWrapper}>
                                   <Icon
                                     name="close-circle"
-                                    fill={colors.grey}
+                                    fill={colors.focus}
                                     height={20}
                                     width={20}
                                   />
@@ -499,6 +500,7 @@ const Register = () => {
                           <View style={{height: 44}} />
                         )
                       }
+                      secureTextEntry={true}
                       iconPosition="right"
                       keyboardType="default"
                       returnKeyType="done"
@@ -539,7 +541,9 @@ const Register = () => {
                             : colors.grey
                         }
                       />
-                      <Text style={{paddingHorizontal: 4}}>Nhớ mật khẩu</Text>
+                      <Text style={{paddingHorizontal: 4, color: colors.focus}}>
+                        Nhớ mật khẩu
+                      </Text>
                     </TouchableOpacity>
                   </View>
                   <View style={{width: '100%'}}>
@@ -579,6 +583,7 @@ const Register = () => {
                         marginVertical: 15,
                         fontWeight: '500',
                         fontSize: 18,
+                        color: colors.white,
                       }}>
                       Thêm sinh nhật
                     </Text>
@@ -590,21 +595,35 @@ const Register = () => {
                       <Text
                         style={{
                           textAlign: 'center',
+                          fontWeight: '400',
+                          fontSize: 15,
+                          color: colors.focus,
                         }}>
                         Thông tin này sẽ không có trên trang cá nhân công khai
-                        của bạn. Tại sao tôi cần biết sinh nhật của mình?
+                        của bạn.
+                      </Text>
+                      <Text
+                        style={{
+                          textAlign: 'center',
+                          fontWeight: '400',
+                          fontSize: 15,
+                          color: colors.focus,
+                        }}>
+                        Tại sao tôi cần biết sinh nhật của mình?
                       </Text>
                     </View>
                     <View style={styles.birthdayInputWrapper}>
                       <View style={styles.birthdayInput}>
-                        <Text>
+                        <Text style={{color: colors.white}}>
                           {MONTH_ALIAS[formikProps.values.month]}{' '}
                           {formikProps.values.date}, {formikProps.values.year}{' '}
                         </Text>
                         <View style={styles.currentYear}>
                           <Text
                             style={{
-                              color: isEnoughAge(formikProps) ? '#000' : 'red',
+                              color: isEnoughAge(formikProps)
+                                ? colors.focus
+                                : 'red',
                             }}>
                             {getAges(formikProps)} Tuổi
                           </Text>
@@ -613,25 +632,29 @@ const Register = () => {
                       {!isEnoughAge(formikProps) && (
                         <Text
                           style={{
-                            color: '#666',
-                            marginVertical: 2.5,
+                            color: colors.focus,
+                            marginVertical: 4,
+                            fontSize: 13,
                           }}>
-                          You need to input your birthday.
+                          Bạn cần nhập ngày sinh của mình.
                         </Text>
                       )}
 
                       <View style={{alignItems: 'center'}}>
                         <Text
                           style={{
-                            marginVertical: 10,
+                            marginVertical: 16,
                             textAlign: 'center',
                             color: '#666',
+                            fontSize: 13,
                           }}>
-                          Use your own birthday, even if this account is for a
-                          bussiness, a pet or something else.
+                          Hãy thêm sinh nhật của chính bạn, dù đây là tài khoản
+                          dành cho doanh nghiệp, thú cưng hay bất cứ điều gì
+                          khác.
                         </Text>
                       </View>
                     </View>
+
                     <TouchableOpacity
                       onPress={() => {
                         _startLoadingAnimation(1);
@@ -865,12 +888,12 @@ const styles = StyleSheet.create({
   },
   birthdayInput: {
     position: 'relative',
-    backgroundColor: 'rgb(242,242,242)',
+    backgroundColor: '#242526',
     width: '100%',
     height: 44,
     justifyContent: 'center',
     borderColor: '#ddd',
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderRadius: 6,
     paddingHorizontal: 15,
   },

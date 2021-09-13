@@ -15,7 +15,7 @@ export default StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     fontSize: 15,
-    color: colors.textTitle,
+    color: colors.white,
   },
   error: {
     color: colors.danger,
