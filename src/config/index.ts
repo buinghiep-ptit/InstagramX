@@ -1,7 +1,7 @@
 import firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
 import storage from '@react-native-firebase/storage';
-
+import firestore from '@react-native-firebase/firestore';
 const firebaseConfig = {
   apiKey: 'AIzaSyBh1wzojydyKVXfRkoVwEH38Gx2GnnqmtQ',
   authDomain: 'instagramx-ed413.firebaseapp.com',
@@ -16,4 +16,4 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-export {firebase, auth, storage};
+export {firebase, auth, storage, firestore};
