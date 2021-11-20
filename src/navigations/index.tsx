@@ -1,15 +1,17 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React, { useState } from 'react';
+import { useSelector } from '../redux/reducers';
 import AuthStack from './AuthStack';
 import MainStack from './MainStack';
 import { navigationRef } from './rootNavigation';
 
 const index = (): JSX.Element => {
-    const [loggedIn] = useState<boolean>(false);
+    const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+    
     return (
         <NavigationContainer ref={navigationRef}>
             {
-                !loggedIn ? <AuthStack /> : <MainStack />
+                !isLoggedIn ? <AuthStack /> : <MainStack />
             }
         </NavigationContainer>
     ) 

@@ -1,5 +1,5 @@
 import {auth, firestore} from '../../config';
-import {defaultUserState} from '../../redux/reducers/userReducer';
+import { userState } from '../../redux/initialStates/userState';
 import {WelcomePropsRouteParams} from '../../screens/Auth/Welcome';
 import {generateUsernameKeywords} from '../../utils';
 
@@ -13,7 +13,6 @@ export const SignUpUser = (userData: RegisterParams) => {
     auth()
       .createUserWithEmailAndPassword(userData.email, userData.password)
       .then(snapshot => {
-        resolve('Đăng ký thành công!');
         snapshot.user.sendEmailVerification();
         firestore()
           .collection('users')
@@ -39,14 +38,15 @@ export const SignUpUser = (userData: RegisterParams) => {
             website: '',
             avatarURL: DEFAULT_PHOTO_URI,
             privacySetting: {
-              ...defaultUserState.setting?.privacy,
+              ...userState.setting?.privacy,
             },
             notificationSetting: {
-              ...defaultUserState.setting?.notification,
+              ...userState.setting?.notification,
             },
           });
       })
       .catch(error => {
+        alert(`${error}`)
         reject(error);
       });
   });

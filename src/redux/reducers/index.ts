@@ -6,9 +6,10 @@ import {
 
 import userReducer from './userReducer'
 import { UserPayload } from '../../helpers/interfaces/user'
+import { AuthSate } from '../initialStates/authState'
 
 export type AppState = {
-    user: UserPayload
+    user: AuthSate
 }
 
 const rootReducer = combineReducers<AppState>({

@@ -8,7 +8,7 @@ import Creator from '../screens/SignedIn/Main/Creator';
 import Explore from '../screens/SignedIn/Main/Explore';
 import Activity from '../screens/SignedIn/Main/Activity';
 import { TabBarComponent } from '../components/BottomTabBar';
-import { ACCOUNT, CREATOR, EXPLORE, GALLERY_CHOOSER, HOME } from '../constant/routerNames';
+import { ACCOUNT, ACTIVITY, CREATOR, EXPLORE, GALLERY_CHOOSER, HOME } from '../constant/routerNames';
 
 export type HomeTabParamList = {
     HomeIndex: undefined,
@@ -94,7 +94,7 @@ const MainTab = () => {
                     tabBarIcon: ({ focused }) => <Icon name="heart"
                         size={30} color={focused ? '#000' : '#ddd'} />
                 }}   
-                component={ActivityStack} name="Activity" />
+                component={ActivityStack} name={ACTIVITY} />
             <Tab.Screen
                 options={{
                     tabBarIcon: ({ focused }) => <Icon name="account-circle"

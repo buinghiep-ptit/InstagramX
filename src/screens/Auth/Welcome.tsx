@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import colors from '../../assets/theme/colors';
 import CustomButton from '../../components/commons/CustomButton';
 import CustomInput from '../../components/commons/CustomInput';
@@ -18,6 +19,7 @@ import {firestore} from '../../config';
 import {SignUpUser} from '../../helpers/services/auth.service';
 import {AuthStackParamList} from '../../navigations/AuthStack';
 import {navigate} from '../../navigations/rootNavigation';
+import { Register } from '../../redux/actions/userActions';
 import Metrics from '../../utils/Dementions';
 import SafeView from '../../utils/SafeView';
 import {
@@ -44,6 +46,8 @@ const Welcome = ({route}: WelcomeProps) => {
   const [usernameError, setUsernameError] = useState<boolean>(false);
   const [changingUsername, setChangingUsername] = useState<boolean>(false);
 
+  const dispatch = useDispatch()
+
   const typingTimeoutRef = useRef<NodeJS.Timeout>();
   useEffect(() => {
     const usr: string = route.params.email.split('@')[0];
@@ -60,13 +64,17 @@ const Welcome = ({route}: WelcomeProps) => {
     }, 200);
   };
 
-  const _signUp = async () => {
-    try {
-      const data = await SignUpUser({...route.params, username});
-      alert(data);
-    } catch (error) {
-      alert(error);
-    }
+  // const _signUp = async () => {
+  //   try {
+  //     const data = await SignUpUser({...route.params, username});
+  //     alert(data);
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // };
+
+  const _signUp = () => {
+    dispatch(Register({...route.params, username}));
   };
 
   const _onClickChangeUsername = (): void => {

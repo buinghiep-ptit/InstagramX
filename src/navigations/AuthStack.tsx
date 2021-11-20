@@ -27,7 +27,7 @@ const AuthStack = () => {
     }
     return (
         <Stack.Navigator 
-            initialRouteName='Register'
+            initialRouteName={REGISTER}
             screenOptions={navigationOptions}>
             <Stack.Screen component={Login} name={LOGIN}/>
             <Stack.Screen component={Register} name={REGISTER} />

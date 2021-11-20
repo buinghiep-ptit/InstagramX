@@ -4,7 +4,7 @@ import colors from '../assets/theme/colors';
 export default StyleSheet.create({
   PlatformSafeArea: {
     flex: 1,
-    backgroundColor: colors.dark,
+    backgroundColor: colors.white,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
 });

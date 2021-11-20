@@ -2,11 +2,12 @@ import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { auth, firestore } from '../../config';
 
 import { userActionTypes } from "../../constant/actionTypes"
-import { HOME } from '../../constant/routerNames';
+import { HOME, LOGIN } from '../../constant/routerNames';
 import { IUserLoginWithEmail, UserPayload } from "../../helpers/interfaces/user"
 import { RegisterParams, SignUpUser } from '../../helpers/services/auth.service';
 import { navigate } from '../../navigations/rootNavigation';
-import { defaultUserState, UserAction, UserErrorAction, UserRequestAction, UserSuccessAction } from "../reducers/userReducer"
+import { userState } from '../initialStates/userState';
+import { UserAction, UserErrorAction, UserRequestAction, UserSuccessAction } from "../reducers/userReducer"
 
 
 export const LoginRequest = (): UserRequestAction => ({
@@ -33,9 +34,6 @@ export const Login = (user: IUserLoginWithEmail):
                 firestore().collection('users')
                     .where('email', '==', user.email).get().then(qs => {
                         if (qs.size > 0) {
-                            setTimeout(() => {
-                                navigate(HOME)
-                            }, 300);
                             const {
                                 avatarURL,
                                 bio,
@@ -78,15 +76,17 @@ export const Login = (user: IUserLoginWithEmail):
                                     }
                                 },
                                 setting: {
-                                    notification: notificationSetting || defaultUserState.setting?.notification,
-                                    privacy: privacySetting || defaultUserState.setting?.privacy
+                                    notification: notificationSetting || userState.setting?.notification,
+                                    privacy: privacySetting || userState.setting?.privacy
                                 }
                             }
+                            console.log('result login: ', result)
                             dispatch(LoginSuccess(result))
                         } else dispatch(LoginFailure('Login Failed!'))
                     })
             } else dispatch(LoginFailure('Login Failed!'))
         }).catch(error => {
+            alert(`${error}`)
             dispatch(LoginFailure(`${error}`))
         })
     }
@@ -112,10 +112,10 @@ export const Register = (params: RegisterParams):
     return async (dispatch: ThunkDispatch<{}, {}, UserAction>) => {
         try {
             dispatch(RegisterRequest());
-            const result = await SignUpUser(params); 
+            await SignUpUser(params); 
             dispatch(Login({email: params.email, password: params.password}));
         } catch (error) {
-            dispatch(RegisterFailure(`${'Register Failed!'}`));
+            dispatch(RegisterFailure(`Register Failed: ${error}`));
         }
     }  
 }
