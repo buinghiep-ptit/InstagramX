@@ -5,9 +5,10 @@ import {
 } from 'react-redux'
 
 import userReducer from './userReducer'
+import { UserPayload } from '../../helpers/interfaces/user'
 
 export type AppState = {
-    user: any
+    user: UserPayload
 }
 
 const rootReducer = combineReducers<AppState>({

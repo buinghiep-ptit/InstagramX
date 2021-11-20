@@ -255,3 +255,8 @@ export type UserPayload = {
   };
   highlights?: Highlight[];
 };
+
+export interface IUserLoginWithEmail {
+  email: string,
+  password: string
+}

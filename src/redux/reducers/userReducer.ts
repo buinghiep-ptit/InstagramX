@@ -1,3 +1,5 @@
+import { Alert } from 'react-native';
+import { userActionTypes } from '../../constant/actionTypes';
 import {UserPayload} from '../../helpers/interfaces/user';
 
 export const defaultUserState: UserPayload = {
@@ -118,8 +120,60 @@ export const defaultUserState: UserPayload = {
   },
   currentStory: [],
 };
-const userReducer = (state = defaultUserState, action) => {
-  return state;
+
+export interface UserRequestAction {
+  type: string,
+  payload: null,
+}
+export interface UserSuccessAction<T> {
+  type: string,
+  payload: T,
+}
+export interface UserErrorAction {
+  type: string,
+  payload: { 
+    message: string 
+  },
+}
+
+export type UserAction = 
+  UserSuccessAction<UserPayload> 
+  | UserRequestAction
+  | UserErrorAction
+
+const userReducer = (state: UserPayload = defaultUserState, action: UserAction): UserPayload => {
+  switch (action.type) {
+    case userActionTypes.REGISTER_REQUEST:
+      action = <UserRequestAction>action;
+      state = {...state, user: {} }
+      return state;  
+    case userActionTypes.REGISTER_SUCCESS:
+      action = <UserSuccessAction<UserPayload>>action;
+      state = { ...state, user:{...action.payload.user} }
+      return state; 
+    case userActionTypes.REGISTER_FAILURE:
+      action = <UserErrorAction>action;
+      const messageRegis = action.payload.message;
+      Alert.alert('Error Register', messageRegis)
+      return state; 
+
+    case userActionTypes.LOGIN_REQUEST:
+      action = <UserRequestAction>action;
+      state = {...state, user: {} }
+      return state;  
+    case userActionTypes.LOGIN_SUCCESS:
+      action = <UserSuccessAction<UserPayload>>action;
+      state = { ...state, user:{...action.payload.user} }
+      return state; 
+    case userActionTypes.LOGIN_FAILURE:
+      action = <UserErrorAction>action;
+      const messageLogin = action.payload.message;
+      Alert.alert('Error Login', messageLogin)
+      return state; 
+
+    default:
+      return state;
+  }
 };
 
 export default userReducer;

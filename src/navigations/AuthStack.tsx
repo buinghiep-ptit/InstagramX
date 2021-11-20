@@ -3,6 +3,7 @@ import {
     StackNavigationOptions 
 } from '@react-navigation/stack'
 import React from 'react';
+import { FORGOT_PASSWORD, LOGIN, REGISTER, WELCOME } from '../constant/routerNames';
 import { 
     ForgotPassword, 
     Login, 
@@ -28,10 +29,10 @@ const AuthStack = () => {
         <Stack.Navigator 
             initialRouteName='Register'
             screenOptions={navigationOptions}>
-            <Stack.Screen component={Login} name="Login" />
-            <Stack.Screen component={Register} name="Register" />
-            <Stack.Screen component={ForgotPassword} name="ForgotPassword" />
-            <Stack.Screen component={Welcome} name="Welcome" />
+            <Stack.Screen component={Login} name={LOGIN}/>
+            <Stack.Screen component={Register} name={REGISTER} />
+            <Stack.Screen component={ForgotPassword} name={FORGOT_PASSWORD} />
+            <Stack.Screen component={Welcome} name={WELCOME} />
         </Stack.Navigator>
     )
 }

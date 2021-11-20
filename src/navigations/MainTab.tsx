@@ -8,6 +8,7 @@ import Creator from '../screens/SignedIn/Main/Creator';
 import Explore from '../screens/SignedIn/Main/Explore';
 import Activity from '../screens/SignedIn/Main/Activity';
 import { TabBarComponent } from '../components/BottomTabBar';
+import { ACCOUNT, CREATOR, EXPLORE, GALLERY_CHOOSER, HOME } from '../constant/routerNames';
 
 export type HomeTabParamList = {
     HomeIndex: undefined,
@@ -72,22 +73,22 @@ const MainTab = () => {
                     tabBarIcon: ({ focused }) => <Icon name="home"
                         size={30} color={focused ? '#000' : '#ddd'} />
                 }} 
-                component={HomeStack} name="HomeIndex" />
+                component={HomeStack} name={HOME} />
             <Tab.Screen options={{
                 tabBarIcon: ({ focused }) => <Icon name="magnify"
                     size={30} color={focused ? '#000' : '#ddd'} />
-            }} component={ExploreStack} name="Explore" />
+            }} component={ExploreStack} name={EXPLORE} />
             <Tab.Screen
                 listeners={({ navigation, route }) => ({
                     tabPress: e => {
                         e.preventDefault();
-                        navigation.navigate('GalleryChooser');
+                        navigation.navigate(GALLERY_CHOOSER);
                     },
                 })}
                 options={{
                     tabBarIcon: ({ focused }) => <Icon name="plus-box"
                         size={30} color={'#ddd'} />
-                }} component={Creator} name="Creator" />
+                }} component={Creator} name={CREATOR} />
             <Tab.Screen 
                 options={{
                     tabBarIcon: ({ focused }) => <Icon name="heart"
@@ -99,7 +100,7 @@ const MainTab = () => {
                     tabBarIcon: ({ focused }) => <Icon name="account-circle"
                         size={30} color={focused ? '#000' : '#ddd'} />
                 }}  
-                component={AccountStack} name="Account" />
+                component={AccountStack} name={ACCOUNT} />
         </Tab.Navigator>
     )
 }
