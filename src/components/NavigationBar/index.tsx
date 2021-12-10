@@ -45,7 +45,7 @@ export default NavigationBar;
 
 const styles = StyleSheet.create({
   navigationBar: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.dark,
     flexDirection: 'row',
     justifyContent: 'space-between',
     height: 44,

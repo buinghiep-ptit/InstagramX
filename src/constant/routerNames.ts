@@ -10,3 +10,6 @@ export const CREATOR = 'Creator';
 export const ACTIVITY = 'Activity';
 export const ACCOUNT = 'Account';
 
+export const STORY_TAKER = 'StoryTaker';
+export const STORY_FULL_VIEW = 'StoryFullView';
+

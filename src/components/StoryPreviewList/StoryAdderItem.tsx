@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons'
 import colors from '../../assets/theme/colors'
+import { STORY_TAKER } from '../../constant/routerNames'
 import { navigate } from '../../navigations/rootNavigation'
 import { ExtraStory } from '../../utils/model'
 
@@ -13,7 +14,7 @@ const StoryAdderItem = ({item}: StoryAdderItemProps) => {
     const user = {};
     return (
         <TouchableOpacity
-            onPress={() => navigate('StoryTaker')}
+            onPress={() => navigate(STORY_TAKER)}
             activeOpacity={0.8}
             style={styles.container}>
             <Image style={styles.avatar} source={{

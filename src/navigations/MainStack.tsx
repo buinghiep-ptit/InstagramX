@@ -3,12 +3,18 @@ import { StyleSheet } from 'react-native'
 import { createStackNavigator, StackNavigationOptions, TransitionPresets } from '@react-navigation/stack';
 import MainTab from './MainTab';
 import StoryFullView from '../screens/SignedIn/Root/StoryFullView';
+import StoryTaker from '../screens/SignedIn/Main/Others/Stories/StoryTaker';
+import { STORY_FULL_VIEW, STORY_TAKER } from '../constant/routerNames';
 
 export type SuperRootStackParamList = {
     MainTab: undefined;
+    StoryTaker: {
+        sendToDirect?: boolean,
+        username?: string
+    },
     StoryFullView: {
         groupIndex: number
-    },
+    };
 }
 const RootStack = createStackNavigator<SuperRootStackParamList>()
 
@@ -26,11 +32,14 @@ const index = (): JSX.Element => {
             <RootStack.Screen 
                 options={{title: 'Trang chu'}}
                 name="MainTab" component={MainTab} />
-            <RootStack.Screen options={{
+             <RootStack.Screen options={{
                     ...TransitionPresets.ModalTransition,
-                    gestureEnabled: true,
-                    cardStyle: { backgroundColor: 'transparent' }
-                }} name="StoryFullView" component={StoryFullView} />
+                }} name="StoryTaker" component={StoryTaker} />
+            <RootStack.Screen options={{
+                ...TransitionPresets.ModalTransition,
+                gestureEnabled: true,
+                cardStyle: { backgroundColor: 'transparent' }
+            }} name={STORY_FULL_VIEW} component={StoryFullView} />
         </RootStack.Navigator>
     )
 }

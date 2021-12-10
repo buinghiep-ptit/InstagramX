@@ -6,6 +6,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import FastImage from 'react-native-fast-image'
 import colors from '../../assets/theme/colors'
 import StoryAdderItem from './StoryAdderItem'
+import { STORY_FULL_VIEW } from '../../constant/routerNames'
 
 export interface StoryPreviewItemProps {
     item: ExtraStory,
@@ -35,7 +36,7 @@ const StoryPreviewItem = ({
 
     const _onCompletedLoadingImage = () => {
         setPreloadingImage(false);
-        navigate('StoryFullView', {
+        navigate(STORY_FULL_VIEW, {
             groupIndex: index
         })
     }

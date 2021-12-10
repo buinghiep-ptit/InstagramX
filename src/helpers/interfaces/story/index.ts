@@ -1,6 +1,7 @@
 import Timestamp from '@react-native-firebase/firestore';
 import {Animated} from 'react-native';
 import {MapBoxAddress} from '../common';
+import { UserInfo } from '../user';
 
 export type Story = {
   userId?: string;
@@ -17,6 +18,13 @@ export type Story = {
   mention?: string[];
   messagesList?: string[];
 };
+
+export type ExtraStory = {
+  storyList: Story[],
+  ownUser: UserInfo
+}
+
+export type StoryList = ExtraStory[]
 
 export type StoryProcessedImage = {
   uri: string;

@@ -12,7 +12,6 @@ target 'InstagramX' do
     :hermes_enabled => false
   )
 
-
   target 'InstagramXTests' do
     inherit! :complete
     # Pods for testing
